@@ -6,8 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>æChat</title>
     <link rel="stylesheet" type="text/css" href="css/clientcss.css">
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.16/socket.io.min.js"></script>
     <!-- <script src="../node_modules/socket.io/node_modules/socket.io-client/dist/socket.io.min.js"></script> -->
     <script src="scripts/main.js"></script>
@@ -16,6 +14,15 @@
   <body>
 
     <div ng-view></div>
+
+  <!-- build:js(dev) scripts/vendor.js -->
+  <!-- bower:js -->
+  <script src="app/bower_components/jquery/dist/jquery.js"></script>
+  <script src="app/bower_components/angular/angular.js"></script>
+  <script src="app/bower_components/angular-route/angular-route.js"></script>
+  <script src="app/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+  <!-- endbower -->
+  <!-- endbuild -->
 
   </body>
 </html>
