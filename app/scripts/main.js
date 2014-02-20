@@ -1,4 +1,4 @@
-var app = angular.module('ChatServer', ['ngRoute']);
+var app = angular.module('PlainChat', ['ngRoute']);
 
 app.config(function($routeProvider) {
     $routeProvider.when('/', {
