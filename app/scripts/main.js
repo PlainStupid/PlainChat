@@ -29,17 +29,24 @@ app.controller("LoginCtrl", ["$scope", "SocketService", function($scope, SocketS
 
 app.controller("LoginCtrl", ["$scope", function($scope) {
 
-	$scope.mymessage = "wat";
-	
-	var socket = io.connect('http://localhost:8080');
-	window.alert("available");
-/*
-	$scope.connect = function() {
-		socket.emit("adduser", $scope.username, function(available){
-			if(available)
-			{
-				window.alert("available");
-			}
-		}*/
+	$scope.mymessage = "";
+	$scope.username = "";
 
+	var socket = io.connect('http://localhost:8080');
+
+	$scope.connect = function(){
+		if(socket)
+		{
+			socket.emit("adduser", $scope.username, function(available){
+				if(available)
+				{
+					window.alert("available");
+				}
+				else
+				{
+					window.alert("not available");
+				}
+			});	
+		}	
+	};
 }]);
