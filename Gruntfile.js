@@ -33,7 +33,8 @@ module.exports = function(grunt) {
             target: {
                 src: [
                     '<%= thisweb.dev %>/index.html'
-                ]
+                ],
+                ignorePath: '<%= thisweb.dev %>/'
             }
         }
     });

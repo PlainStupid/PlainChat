@@ -1,5 +1,5 @@
 <!doctype html>
-<html ng-app="Client">
+<html ng-app="ChatServer">
   <head>
     <meta charset="utf-8">
     <meta name="description" content="">
@@ -8,21 +8,24 @@
     <link rel="stylesheet" type="text/css" href="css/clientcss.css">
     <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.16/socket.io.min.js"></script>
     <!-- <script src="../node_modules/socket.io/node_modules/socket.io-client/dist/socket.io.min.js"></script> -->
-    <script src="scripts/main.js"></script>
   </head>
 
   <body>
 
-    <div ng-view></div>
+    <div ng-view=""></div>
 
   <!-- build:js(dev) scripts/vendor.js -->
   <!-- bower:js -->
-  <script src="app/bower_components/jquery/dist/jquery.js"></script>
-  <script src="app/bower_components/angular/angular.js"></script>
-  <script src="app/bower_components/angular-route/angular-route.js"></script>
-  <script src="app/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+  <script src="bower_components/jquery/dist/jquery.js"></script>
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
   <!-- endbower -->
   <!-- endbuild -->
 
+  <!-- build:js(dev) scripts/client.js -->
+  <script src="scripts/main.js"></script>
+  <script src="scripts/controllers/login.js"></script>
+  <!-- endbuild -->
   </body>
 </html>
