@@ -2,7 +2,7 @@ var app = angular.module("Client", ["ngRoute"]);
 
 app.config(function($routeProvider) {
 	$routeProvider.when("/", {
-		templateUrl: "view/login.html",
+		templateUrl: "views/login.html",
       	controller: "LoginCtrl"
 	})
 	.otherwise({ redirectTo: "/" });
