@@ -1,0 +1,10 @@
+li
+{
+display:inline;
+}
+#navbar
+{
+	list-style-type:none;
+	text-align:center;
+	color:black;
+}
