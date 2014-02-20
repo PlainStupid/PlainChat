@@ -5,25 +5,12 @@ app.config(function($routeProvider) {
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl'
     })
-        .otherwise({
-            redirectTo: '/'
-        });
+    .when('/room',
+    {
+        templateUrl: 'views/room.html',
+	    controller: 'RoomCtrl'
+    })
+    .otherwise({
+        redirectTo: '/'
+    });
 });
-/*
-app.controller('LoginCtrl', ['$scope', 'SocketService', function($scope, SocketService) {
-
-	$scope.message = 'test';
-
-	var socket = io.connect('http://localhost:8080');
-
-	$scope.connect = function() {
-		socket.emit('adduser', $scope.username, function(available){
-			if(available)
-			{
-				window.alert('available');
-			}
-		}
-
-	}
-
-}]);*/
