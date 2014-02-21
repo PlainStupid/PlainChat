@@ -1,19 +1,22 @@
-app.controller('LoginCtrl', ['$scope',
-    function($scope) {
+app.controller('LoginCtrl', ['$scope', '$location', 'SocketSrv', 'PLAIN_URL',
+function($scope, $location, SocketSrv, PLAIN_URL) {
 
-        $scope.mymessage = '';
-        $scope.username = '';
+        $scope.unavailable = '';
 
-        var socket = io.connect('http://localhost:8080');
+        var socket = io.connect(PLAIN_URL);
 
         $scope.connect = function() {
             if (socket) {
                 socket.emit('adduser', $scope.username, function(available) {
                     if (available) {
-                        window.alert('available');
+                        SocketSrv.setSocket(socket);
+                        SocketSrv.setNickName($scope.username);
+
+                        $location.path('/lobby');
                     } else {
-                        window.alert('not available');
+                        $scope.unavailable = 'Sorry, this username is unavailable';
                     }
+                    $scope.$apply();
                 });
             }
         };
