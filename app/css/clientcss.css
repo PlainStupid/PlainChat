@@ -1,5 +1,4 @@
-li
-{
+/*{
 display:inline;
 }
 #navbar
@@ -7,4 +6,15 @@ display:inline;
 	list-style-type:none;
 	text-align:center;
 	color:black;
+}
+*/
+
+/* Customize container */
+@media (min-width: 768px) {
+  .container {
+    max-width: 900px;
+  }
+}
+.container-narrow > hr {
+  margin: 30px 0;
 }

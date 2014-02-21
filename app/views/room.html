@@ -1,2 +1,36 @@
-<h2>Room</h2>
-<p ng-bind="roommessage"></p>
+<h2>{{roomName}}</h2>
+
+
+<div class="row">
+  <div class="col-md-12">
+    <!-- -->
+    <div class="row">
+      <!-- Hér koma skilaboðin -->
+      <div class="col-md-8">
+        <ul class="list-unstyled">
+          <li ng-repeat="roomMessage in roomMessages">
+          <strong>({{roomMessage.timestamp | date:"HH:mm" }})</strong>
+          <strong><{{roomMessage.nick }}></strong>
+          {{roomMessage.message }}
+          </li>
+        </ul>
+      </div>
+
+      <!-- Hér kemur notendalistinn -->
+      <div class="col-md-4">
+        <p>Userlist</p>
+        <ul class="list-unstyled">
+          <!-- Sorterum user listann -->
+          <li ng-repeat="user in users | orderBy:'toString()' ">{{user}}</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Hér kemur textaboxið -->
+    <div class="col-xs-8">
+      <input ng-model="" ng-keypress="keyPress($event)" type="text" class="form-control form-inline" placeholder="Type your message" />
+      <button ng-click="send()" class="btn btn-default">Send</button>
+    </div>
+
+  </div>
+</div>
