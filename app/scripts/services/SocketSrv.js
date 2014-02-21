@@ -1,5 +1,5 @@
 app.factory('SocketSrv', [ function() {
-	var nickname = '';
+	var nickname = ''	;
 	var socketConection;
 	return {
 		setSocket: function(socketIn) {
