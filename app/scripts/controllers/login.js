@@ -4,6 +4,11 @@ function($scope, $location, SocketSrv, PLAIN_URL) {
         $scope.unavailable = '';
 
         var socket = io.connect(PLAIN_URL);
+        $scope.keyPress = function($event) {
+          if($event.keyCode === 13) {
+            $scope.connect();
+          }
+        };
 
         $scope.connect = function() {
             if (socket) {
