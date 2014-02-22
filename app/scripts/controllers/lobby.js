@@ -2,7 +2,7 @@ app.controller('LobbyCtrl', ['$scope', 'SocketSrv','$location', function($scope,
 
   $scope.lobbyUser = SocketSrv.getNickName(); //getting the user andd socket
   var socket = SocketSrv.getSocket();
-  $scope.errormsg = '';
+  $scope.errormsg = 'There was an error while creating chatroom';
 
   socket.emit('rooms');
   socket.on('roomlist',function(data){ //call the server for a room list
