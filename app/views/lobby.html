@@ -1,16 +1,15 @@
-<h2>Lobby</h2>
-<p>Welcome <span ng-bind="lobbyUser"></span></p>
+<h1>Lobby</h1>
+<h2>Welcome <span ng-bind="lobbyUser"></span></h2>
 
-        <p>Rooms</p>
-        <ul>
-          <li ng-repeat="room in roomlist">
-            <span>{{room.topic}}</span>
-            <button ng-click="joinRoom(room.name)">join</button>
-
-          </li>
-        </ul>
+<h3>Rooms</h3>
+<ul>
+  <li ng-repeat="room in roomlist">
+    <span class="textcolor">{{room.topic}}</span>
+    <button ng-click="joinRoom(room.name)">Join</button>
+  </li>
+</ul>
 
 <input ng-model="roomName" placeholder="room name here">
-<button ng-click="createRoom()">create!</button>
+<button ng-click="createRoom()">Create!</button>
 
 {{errormsg}}
