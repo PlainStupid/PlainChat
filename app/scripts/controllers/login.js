@@ -15,7 +15,7 @@ app.controller('LoginCtrl', ['$scope', '$location', 'SocketSrv', 'PLAIN_URL',
 
         $scope.connect = function() {
             if (socket) {
-                $scope.username = $scope.username.replace(/\s+/g, "-");
+                $scope.username = $scope.username.replace(/\s+/g, '-');
 
                 socket.emit('adduser', $scope.username, function(available) {
                     if (available) {
@@ -29,8 +29,7 @@ app.controller('LoginCtrl', ['$scope', '$location', 'SocketSrv', 'PLAIN_URL',
                     $scope.$apply();
                 });
 
-            };
-
-        }
+            }
+        };
     }
 ]);

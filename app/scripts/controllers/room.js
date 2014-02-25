@@ -9,6 +9,7 @@ app.controller('RoomCtrl', ['$scope', '$location', '$routeParams', 'SocketSrv', 
 
         $scope.ops = [];
 
+        var ban = /^\/ban\s.+$/;
         var kick = /^\/kick\s.+$/;
         var partroom = /^\/partroom$/;
 
@@ -41,6 +42,15 @@ app.controller('RoomCtrl', ['$scope', '$location', '$routeParams', 'SocketSrv', 
                 }
             });
 
+            socket.on('banned', function(room, banned, banner) {
+                if (banned === SocketSrv.getNickName()) {
+                    alert('You have been banned');
+                    $location.path('/lobby');
+                    SocketSrv.setSocket(socket);
+                    $scope.$apply();
+                }
+            });
+
         }
 
         $scope.sendMessage = function() {
@@ -63,6 +73,19 @@ app.controller('RoomCtrl', ['$scope', '$location', '$routeParams', 'SocketSrv', 
                 } else if (partroom.test($scope.usermessage)) {
                     socket.emit('partroom', $scope.roomName);
                     $location.path('/lobby');
+
+                } else if (ban.test($scope.usermessage)) {
+                    socket.emit('ban', {
+                        room: $scope.roomName,
+                        user: thevictim
+                    }, function(success) {
+                        if (success) {
+                            //alert("Success");
+                            $scope.successText = 'You banned ' + thevictim;
+                            $scope.showSuccess = true;
+                            $scope.$apply();
+                        }
+                    });
                 } else {
                     socket.emit('sendmsg', {
                         roomName: $scope.roomName,
