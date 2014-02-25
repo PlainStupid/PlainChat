@@ -1,11 +1,11 @@
 <h2>
   {{roomName}}
 </h2>
-<span>Welcome, {{currentUser}} &nbsp</span>
+<span>Welcome, <strong>{{currentUser}}</strong>!</span>
 <span href="" id="help" class="" data-toggle="popover" title="" data-html="true"
-data-content="/kick username- kick users,<br/>
-/ban username - ban user,<br/>
-/partroom - to leave room"
+data-content="/kick username - kick users <br/>
+/ban username - ban user <br/>
+/partroom - leave room"
 data-original-title="Commands">Help? - hover this</span>
 <!-- Hér koma skilaboðin -->
 <div class="row">
@@ -26,7 +26,7 @@ data-original-title="Commands">Help? - hover this</span>
     </div>
   </div>
   <!-- Hér kemur notendalistinn -->
-  <div class="col-md-3" id="users">
+  <div class="col-md-3 userbox" id="users">
     <h3>Users</h3>
     <div class="well">
       <ul class="list-unstyled">
@@ -37,7 +37,7 @@ data-original-title="Commands">Help? - hover this</span>
     </div>
   </div>
 
-  <div class="col-md-10">
+  <div class="col-md-9">
     <form ng-submit="sendMessage()">
       <input ng-model="usermessage" class="form-control">
       <input type="submit" value="Send" class="btn btn-primary">

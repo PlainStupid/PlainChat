@@ -12,11 +12,11 @@ display:inline;
 /* Customize container */
 body
 {
-  /*background: url('/img/background.jpg') no-repeat center center fixed;
+  background: url('/img/background.jpg') no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  background-size: cover;*/
+  background-size: cover;
 }
 
 @media (min-width: 768px) {
@@ -34,16 +34,16 @@ li
   list-style-type: none;
 }
 
-.well.messagebox, [scroll-glue]{
+.well.messagebox, [scroll-glue], .well.userBox{
   margin-bottom: 50px;
   height: 320px;
   /*overflow: auto;*/
   overflow-y: auto;
 }
 
-.messageBox, .userBox
+.messageBox, .userBox, .roomsbox
 {
-  background-color: #A6A6A6;
+  background-color: #FAFAFA;
   border: 2px solid black;
   color: black;
   padding-top: 10px;
@@ -52,6 +52,8 @@ li
 h1,
 h2,
 h3,
+span,
+p,
 .textcolor
 {
   color: #B0BF5A;
