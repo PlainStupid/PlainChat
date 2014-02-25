@@ -16,7 +16,7 @@ app.controller('RoomCtrl', ['$scope', '$location', '$routeParams', 'SocketSrv', 
         var partroom = /^\/partroom$/;
         var op = /^\/op\s.+$/;
         var deop = /^\/deop\s.+$/;
-        var unban = /^\/ban\s.+$/;
+        var unban = /^\/unban\s.+$/;
         var settopic = /^\/settopic\s.+$/
 
         if (socket) {
@@ -45,6 +45,12 @@ app.controller('RoomCtrl', ['$scope', '$location', '$routeParams', 'SocketSrv', 
                     $scope.users = users;
                     $scope.ops = ops;
                     $scope.$apply();
+                }
+            });
+
+            socket.on('updatetopic', function(room, topic, username) {
+                if (room === $scope.roomName) {
+                    $scope.roomTopic = topic;
                 }
             });
 
@@ -133,9 +139,13 @@ app.controller('RoomCtrl', ['$scope', '$location', '$routeParams', 'SocketSrv', 
                         }
                     });
                 } else if (settopic.test($scope.usermessage)) {
-                    socket.emit('', {
+                    socket.emit('settopic', {
                         room: $scope.roomName,
                         topic: thevictim
+                    }, function(success) {
+                        $scope.successText = 'You changed the topic successfully';
+                        $scope.showSuccess = true;
+                        $scope.$apply();
                     });
                 } else {
                     socket.emit('sendmsg', {
