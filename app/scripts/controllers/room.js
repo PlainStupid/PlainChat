@@ -17,7 +17,7 @@ app.controller('RoomCtrl', ['$scope', '$location', '$routeParams', 'SocketSrv', 
         var op = /^\/op\s.+$/;
         var deop = /^\/deop\s.+$/;
         var unban = /^\/ban\s.+$/;
-        var settopic = /^\/settopic\s.+$/
+        var settopic = /^\/settopic\s.+$/;
 
         if (socket) {
 
