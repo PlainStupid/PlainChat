@@ -7,10 +7,15 @@ app.config(function($routeProvider) {
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl'
     })
-    .when('/room',
+/*    .when('/room',
     {
         templateUrl: 'views/room.html',
 	    controller: 'RoomCtrl'
+    })*/
+    .when('/room/:roomId',
+    {
+        templateUrl: 'views/room.html',
+      controller: 'RoomCtrl'
     })
     .when('/lobby',
     {

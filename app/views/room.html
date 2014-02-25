@@ -1,39 +1,43 @@
-<h2>{{roomName}}</h2>
+<h2>
+  {{roomName}}
+</h2>
+<!-- Hér koma skilaboðin -->
+<ul class="list-unstyled">
+  <li ng-repeat="roomMessage in roomMessages">
+    <strong>
+      [{{roomMessage.timestamp | date:"HH:mm" }}]
+    </strong>
+    <strong>
+      &lt;{{roomMessage.nick }}&gt;
+    </strong>
+    {{roomMessage.message }}
+  </li>
+</ul>
 
-<div class="row">
-  <div class="col-md-12">
-    <!-- -->
-    <div class="row">
+<!-- Hér kemur notendalistinn -->
+<ul class="list-unstyled">
+  <!-- Sorterum user listann ng-class="{active:isOp()}" -->
+  <li ng-repeat="op in ops | orderBy:'toString()' ">
+    *{{op}}
+  </li>
+  <li ng-repeat="user in users | orderBy:'toString()' ">
+    {{user}}
+  </li>
+</ul>
 
-      <!-- Hér koma skilaboðin -->
-      <div class="col-md-7 messageBox">
-        <ul class="list-unstyled">
-          <li ng-repeat="roomMessage in roomMessages">
-          <strong>[{{roomMessage.timestamp | date:"HH:mm" }}]</strong>
-          <strong>&lt;{{roomMessage.nick }}&gt;</strong>
-          {{roomMessage.message }}
-          </li>
-        </ul>
-      </div>
+<form ng-submit="sendMessage()">
+  <input ng-model="usermessage" class="form-control">
+  <input type="submit" value="Send" class="btn btn-primary">
+</form>
 
-      <div class="col-md-1">
-      </div>
-
-      <!-- Hér kemur notendalistinn -->
-      <div class="col-md-2 userBox">
-
-        <ul class="list-unstyled">
-          <!-- Sorterum user listann -->
-          <li ng-repeat="user in users | orderBy:'toString()' ">{{user}}</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- Hér kemur textaboxið -->
-    <div class="col-xs-8">
-      <input ng-model="" ng-keypress="keyPress($event)" type="text" class="form-control form-inline" placeholder="Type your message" />
-      <button ng-click="send()" class="btn btn-default">Send</button>
-    </div>
-
-  </div>
+<div class="alert alert-success" ng-show="showSuccess">
+  <button type="button" class="close" data-ng-click="switchBool('showSuccess')">×</button>
+  <strong>Done!</strong> {{successText}}
 </div>
+
+<!-- Hér kemur textaboxið -->
+<!-- <form ng-submit="sendMessage()" class="well form-search form-send-message" style="margin-left: -12px;margin-top: 0">
+  <input ng-model="message" placeholder="Message" class="span11 input-message">
+  <input type="submit" value="Send" style="margin-left: 10px;margin-top: 0" class="btn btn-primary">
+</form>
+-->

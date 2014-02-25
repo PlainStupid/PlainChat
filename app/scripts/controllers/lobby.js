@@ -1,28 +1,36 @@
-app.controller('LobbyCtrl', ['$scope', 'SocketSrv','$location', function($scope, SocketSrv, $location) {
+app.controller('LobbyCtrl', ['$scope', '$routeParams', 'SocketSrv', '$location',
+    function($scope, $routeParams, SocketSrv, $location) {
 
-  $scope.lobbyUser = SocketSrv.getNickName(); //getting the user andd socket
-  var socket = SocketSrv.getSocket();
-  $scope.errormsg = 'There was an error while creating chatroom';
+        $scope.lobbyUser = SocketSrv.getNickName(); //getting the user andd socket
+        var socket = SocketSrv.getSocket();
+        $scope.errormsg = '';
 
-  socket.emit('rooms');
-  socket.on('roomlist',function(data){ //call the server for a room list
-    $scope.roomlist = data;
-    $scope.$apply();
-  });
+        socket.emit('rooms');
+        socket.on('roomlist', function(data) { //call the server for a room list
+            $scope.roomlist = data;
+            $scope.$apply();
+        });
 
-  $scope.joinRoom = function(theRoom){  //needs work
-    if(socket) {
+        $scope.joinRoom = function(data) { //needs work
+            if (socket) {
+                $location.path('/room/' + data);
+            }
+        };
 
-      socket.emit('joinroom', { room: theRoom, pass: '' }, function(success, errorMessage) {});
-        $location.path('/room/{{room.theRoom}}');
+        $scope.createRoom = function() { //also needs work :)
+            if (socket) {
+                $location.path('/room/' + $scope.newName);
+            }
+        };
 
+
+        $scope.sendMessage = function() {
+            $scope.successText = $scope.theName;
+            $scope.showSuccess = true;
+        };
+
+        $scope.switchBool = function(value) {
+            $scope[value] = !$scope[value];
+        };
     }
-  };
-  $scope.createRoom = function() {  //also needs work :)
-    if(socket) {
-        socket.emit('joinroom', { room: $scope.roomName, pass: '' }, function(success, errorMessage) {});
-          $location.path('/room/{{room.theRoom}}');
-      }
-  };
-
-}]);
+]);
