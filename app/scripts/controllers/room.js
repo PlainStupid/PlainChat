@@ -17,6 +17,7 @@ app.controller('RoomCtrl', ['$scope', '$location', '$routeParams', 'SocketSrv', 
         var op = /^\/op\s.+$/;
         var deop = /^\/deop\s.+$/;
         var unban = /^\/ban\s.+$/;
+        var settopic = /^\/settopic\s.+$/
 
         if (socket) {
 
@@ -130,6 +131,11 @@ app.controller('RoomCtrl', ['$scope', '$location', '$routeParams', 'SocketSrv', 
                             $scope.showSuccess = true;
                             $scope.$apply();
                         }
+                    });
+                } else if (settopic.test($scope.usermessage)) {
+                    socket.emit('', {
+                        room: $scope.roomName,
+                        topic: thevictim
                     });
                 } else {
                     socket.emit('sendmsg', {
