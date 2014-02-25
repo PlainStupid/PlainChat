@@ -4,8 +4,10 @@
 <div class="row">
   <div class="col-md-3">
     <h3>Add room</h3>
-    <input ng-model="newName" placeholder="room name here">
-    <button ng-click="createRoom()">Create!</button>
+    <form ng-submit='createRoom()'>
+      <input ng-model="newName" placeholder="room name here">
+      <button ng-click="createRoom()">Create!</button>
+    <form>
   </div>
 
   <div class="col-md-3">
