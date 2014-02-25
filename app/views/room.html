@@ -5,7 +5,7 @@
 <div class="row">
   <div class="col-md-10">
     <h3>Messages</h3>
-    <div class="well messagebox">
+    <div class="well messagebox" scroll-glue ng-model="glued">
       <ul class="list-unstyled">
         <li ng-repeat="roomMessage in roomMessages">
           <strong>
@@ -22,7 +22,7 @@
   <!-- Hér kemur notendalistinn -->
   <div class="col-md-2">
     <h3>Users</h3>
-    <div class="well">
+    <div class="well" style="position: sticky;">
       <ul class="list-unstyled">
         <!-- Sorterum user listann ng-class="{active:isOp()}" -->
         <li ng-repeat="op in ops | orderBy:'toString()' ">

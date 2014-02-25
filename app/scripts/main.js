@@ -1,4 +1,4 @@
-var app = angular.module('PlainChat', ['ngRoute']);
+var app = angular.module('PlainChat', ['ngRoute', 'luegg.directives']);
 
 app.constant('PLAIN_URL','http://localhost:8080');
 

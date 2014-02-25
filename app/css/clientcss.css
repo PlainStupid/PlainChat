@@ -34,10 +34,11 @@ li
   list-style-type: none;
 }
 
-.well.messagebox{
+.well.messagebox, [scroll-glue]{
   margin-bottom: 50px;
   height: 400px;
-  overflow: auto;
+  /*overflow: auto;*/
+  overflow-y: scroll;
 }
 
 .messageBox, .userBox
@@ -68,4 +69,3 @@ h3,
 
   margin: auto;
 }
-

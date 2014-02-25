@@ -36,6 +36,8 @@ app.controller('RoomCtrl', ['$scope', '$location', '$routeParams', 'SocketSrv', 
         */
 
         //$scope.users = '';
+        //
+        $scope.glued = true;
 
         $scope.roomName = $routeParams.roomId;
 
@@ -65,6 +67,7 @@ app.controller('RoomCtrl', ['$scope', '$location', '$routeParams', 'SocketSrv', 
 
         $scope.sendMessage = function() {
             if (socket) {
+
                 socket.emit('sendmsg', {
                     roomName: $scope.roomName,
                     msg: $scope.usermessage
@@ -85,6 +88,7 @@ app.controller('RoomCtrl', ['$scope', '$location', '$routeParams', 'SocketSrv', 
         $scope.switchBool = function(value) {
             $scope[value] = !$scope[value];
         };
+
         /*
 
     if (socket) {
