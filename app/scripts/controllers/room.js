@@ -80,11 +80,6 @@ app.controller('RoomCtrl', ['$scope', '$location', '$routeParams', 'SocketSrv', 
 
         };
 
-        /*$scope.sendMessage = function() {
-            $scope.successText = $scope.message;
-            $scope.showSuccess = true;
-        };*/
-
         $scope.switchBool = function(value) {
             $scope[value] = !$scope[value];
         };

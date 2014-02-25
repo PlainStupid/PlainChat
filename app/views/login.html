@@ -1,6 +1,13 @@
 <div class="Absolute-Center">
   <h2>Please choose a username:</h2>
   <input ng-model="username" placeholder="Insert name here" ng-keypress="keyPress($event)">
-  <button ng-click="connect()">Connect!</button>
+
+  <button ng-click="connect()">Connect!</button>{{regexpValidated}}
   <p class="textcolor" ng-bind="unavailable"></p>
+  <p>All spaces will be replaced with hyphen (-)</p>
+
+  <div class="alert alert-danger" ng-show="showMessage">
+    <button type="button" class="close" data-ng-click="switchBool('showMessage')">×</button>
+    <strong>Warning!</strong>{{warningText}}
+  </div>
 </div>

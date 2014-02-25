@@ -3,7 +3,7 @@
 </h2>
 <!-- Hér koma skilaboðin -->
 <div class="row">
-  <div class="col-md-10">
+  <div class="col-md-9">
     <h3>Messages</h3>
     <div class="well messagebox" scroll-glue ng-model="glued">
       <ul class="list-unstyled">
@@ -20,17 +20,13 @@
     </div>
   </div>
   <!-- Hér kemur notendalistinn -->
-  <div class="col-md-2">
+  <div class="col-md-3" id="users">
     <h3>Users</h3>
-    <div class="well" style="position: sticky;">
+    <div class="well">
       <ul class="list-unstyled">
         <!-- Sorterum user listann ng-class="{active:isOp()}" -->
-        <li ng-repeat="op in ops | orderBy:'toString()' ">
-          <strong>[op]&nbsp;</strong>{{op}}
-        </li>
-        <li ng-repeat="user in users | orderBy:'toString()' ">
-          {{user}}
-        </li>
+        <li ng-repeat="op in ops | orderBy:'toString()' "><strong>[{{op}}]</strong></li>
+        <li ng-repeat="user in users | orderBy:'toString()' ">{{user}}</li>
       </ul>
     </div>
   </div>
@@ -43,7 +39,7 @@
   </div>
 </div>
 
-<!--
+
 <div class="alert alert-success" ng-show="showSuccess">
 <button type="button" class="close" data-ng-click="switchBool('showSuccess')">
 ×
@@ -53,7 +49,7 @@ Done!
 </strong>
 {{successText}}
 </div>
--->
+
 
 <!-- Hér kemur textaboxið -->
 <!--
