@@ -14,6 +14,9 @@ app.controller('RoomCtrl', ['$scope', '$location', '$routeParams', 'SocketSrv', 
         var ban = /^\/ban\s.+$/;
         var kick = /^\/kick\s.+$/;
         var partroom = /^\/partroom$/;
+        var op = /^\/op\s.+$/;
+        var deop = /^\/deop\s.+$/;
+        var unban = /^\/ban\s.+$/;
 
         if (socket) {
 
@@ -22,8 +25,9 @@ app.controller('RoomCtrl', ['$scope', '$location', '$routeParams', 'SocketSrv', 
                 pass: ''
             }, function(success, errorMessage) {
                 if (!success) {
-                    if (errorMessage === 'banned')
+                    if (errorMessage === 'banned') {
                         alert('Your are banned from this room');
+                    }
                     $location.path('/lobby');
                     $scope.$apply();
                 }
@@ -83,14 +87,46 @@ app.controller('RoomCtrl', ['$scope', '$location', '$routeParams', 'SocketSrv', 
                     socket.emit('partroom', $scope.roomName);
                     $location.path('/lobby');
 
+                } else if (op.test($scope.usermessage)) {
+                    socket.emit('op', {
+                        room: $scope.roomName,
+                        user: thevictim
+                    }, function(success) {
+                        if (success) {
+                            $scope.successText = hevictim + ' is now an op';
+                            $scope.showSuccess = true;
+                            $scope.$apply();
+                        }
+                    });
+                } else if (deop.test($scope.usermessage)) {
+                    socket.emit('deop', {
+                        room: $scope.roomName,
+                        user: thevictim
+                    }, function(success) {
+                        if (success) {
+                            $scope.successText = 'You deoped ' + thevictim;
+                            $scope.showSuccess = true;
+                            $scope.$apply();
+                        }
+                    });
                 } else if (ban.test($scope.usermessage)) {
                     socket.emit('ban', {
                         room: $scope.roomName,
                         user: thevictim
                     }, function(success) {
                         if (success) {
-                            //alert("Success");
                             $scope.successText = 'You banned ' + thevictim;
+                            $scope.showSuccess = true;
+                            $scope.$apply();
+                        }
+                    });
+                } else if (unban.test($scope.usermessage)) {
+                    socket.emit('unban', {
+                        room: $scope.roomName,
+                        user: thevictim
+                    }, function(success) {
+                        if (success) {
+                            $scope.successText = 'You unbanned ' + thevictim;
                             $scope.showSuccess = true;
                             $scope.$apply();
                         }

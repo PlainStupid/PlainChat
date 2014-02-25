@@ -56,6 +56,16 @@ Done!
 {{successText}}
 </div>
 
+<div class="alert alert-alert" ng-show="showSuccess">
+<button type="button" class="close" data-ng-click="switchBool('showSuccess')">
+×
+</button>
+<strong>
+Done!
+</strong>
+{{successText}}
+</div>
+
 <script>
   var $help = $('#help');
   $help.data('state', 'hover');
