@@ -3,6 +3,8 @@ app.controller('RoomCtrl', ['$scope', '$location', '$routeParams', 'SocketSrv', 
 
         var socket = SocketSrv.getSocket();
 
+        $scope.currentUser = SocketSrv.getNickName();
+
         $scope.glued = true;
 
         $scope.roomName = $routeParams.roomId;
@@ -18,7 +20,14 @@ app.controller('RoomCtrl', ['$scope', '$location', '$routeParams', 'SocketSrv', 
             socket.emit('joinroom', {
                 room: $scope.roomName,
                 pass: ''
-            }, function(success, errorMessage) {});
+            }, function(success, errorMessage) {
+                if (!success) {
+                    if (errorMessage === 'banned')
+                        alert('Your are banned from this room');
+                    $location.path('/lobby');
+                    $scope.$apply();
+                }
+            });
 
             socket.on('updatechat', function(roomname, messageHistory) {
                 $scope.roomMessages = messageHistory;

@@ -36,7 +36,7 @@ li
 
 .well.messagebox, [scroll-glue]{
   margin-bottom: 50px;
-  height: 350px;
+  height: 320px;
   /*overflow: auto;*/
   overflow-y: auto;
 }
