@@ -32,6 +32,16 @@ app.controller('RoomCtrl', ['$scope', '$location', '$routeParams', 'SocketSrv', 
                 }
             });
 
+            socket.on('kicked', function(room, kicked, kicker) {
+              if(kicked === SocketSrv.getNickName())
+              {
+                alert('You have been kicked');
+                $location.path('/lobby');
+                SocketSrv.setSocket(socket);
+                $scope.$apply();
+              }
+            });
+
         }
 
         $scope.sendMessage = function() {
@@ -43,10 +53,12 @@ app.controller('RoomCtrl', ['$scope', '$location', '$routeParams', 'SocketSrv', 
                     socket.emit('kick', {
                         room: $scope.roomName,
                         user: thevictim
-                    }, function(sucess, err) {
+                    }, function(success) {
                         if (success) {
+                            //alert("Success");
                             $scope.successText = 'You kicked ' + thevictim;
                             $scope.showSuccess = true;
+                            $scope.$apply();
                         }
                     });
 
