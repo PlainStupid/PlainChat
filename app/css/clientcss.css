@@ -34,10 +34,9 @@ li
   list-style-type: none;
 }
 
-.messageBox
-{
+.well.messagebox{
   margin-bottom: 50px;
-  height: 300px;
+  height: 400px;
   overflow: auto;
 }
 

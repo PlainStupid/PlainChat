@@ -57,7 +57,6 @@ app.controller('RoomCtrl', ['$scope', '$location', '$routeParams', 'SocketSrv', 
                 console.log('Updating users');
                 if (room === $scope.roomName) {
                     $scope.users = users;
-                    console.log('Current ops ' + ops);
                     $scope.ops = ops;
                     $scope.$apply();
                 }
