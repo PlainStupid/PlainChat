@@ -23,7 +23,9 @@ app.controller('RoomCtrl', ['$scope', '$location', '$routeParams', 'SocketSrv', 
             }, function(success, errorMessage) {
                 if (!success) {
                     if (errorMessage === 'banned')
+                    {
                         alert('Your are banned from this room');
+                    }
                     $location.path('/lobby');
                     $scope.$apply();
                 }
