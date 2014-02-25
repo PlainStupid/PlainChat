@@ -17,7 +17,8 @@ app.controller('RoomCtrl', ['$scope', '$location', '$routeParams', 'SocketSrv', 
         var op = /^\/op\s.+$/;
         var deop = /^\/deop\s.+$/;
         var unban = /^\/unban\s.+$/;
-        var settopic = /^\/settopic\s.+$/
+        var settopic = /^\/settopic\s.+$/;
+        var privatemsg = /^\/privatemsg\s\S.+\s.+$/;
 
         if (socket) {
 
@@ -71,6 +72,10 @@ app.controller('RoomCtrl', ['$scope', '$location', '$routeParams', 'SocketSrv', 
                 }
             });
 
+            socket.on('recv_privatemsg', function(user, message) {
+                alert('Private message from ' + user + ': ' + message);
+            })
+
         }
 
         $scope.sendMessage = function() {
@@ -86,6 +91,10 @@ app.controller('RoomCtrl', ['$scope', '$location', '$routeParams', 'SocketSrv', 
                         if (success) {
                             $scope.successText = 'You kicked ' + thevictim;
                             $scope.showSuccess = true;
+                            $scope.$apply();
+                        } else {
+                            $scope.errorText = 'There was an error kicking the user. Maby you arent an op';
+                            $scope.showError = true;
                             $scope.$apply();
                         }
                     });
@@ -103,6 +112,10 @@ app.controller('RoomCtrl', ['$scope', '$location', '$routeParams', 'SocketSrv', 
                             $scope.successText = hevictim + ' is now an op';
                             $scope.showSuccess = true;
                             $scope.$apply();
+                        } else {
+                            $scope.errorText = 'There was an error trying to make someone an op. Maby you arent an op';
+                            $scope.showError = true;
+                            $scope.$apply();
                         }
                     });
                 } else if (deop.test($scope.usermessage)) {
@@ -113,6 +126,10 @@ app.controller('RoomCtrl', ['$scope', '$location', '$routeParams', 'SocketSrv', 
                         if (success) {
                             $scope.successText = 'You deoped ' + thevictim;
                             $scope.showSuccess = true;
+                            $scope.$apply();
+                        } else {
+                            $scope.errorText = 'There was an error deoping the user. Maby you arent an op';
+                            $scope.showError = true;
                             $scope.$apply();
                         }
                     });
@@ -125,6 +142,10 @@ app.controller('RoomCtrl', ['$scope', '$location', '$routeParams', 'SocketSrv', 
                             $scope.successText = 'You banned ' + thevictim;
                             $scope.showSuccess = true;
                             $scope.$apply();
+                        } else {
+                            $scope.errorText = 'There was an error banning the user. Maby you arent an op';
+                            $scope.showError = true;
+                            $scope.$apply();
                         }
                     });
                 } else if (unban.test($scope.usermessage)) {
@@ -136,6 +157,10 @@ app.controller('RoomCtrl', ['$scope', '$location', '$routeParams', 'SocketSrv', 
                             $scope.successText = 'You unbanned ' + thevictim;
                             $scope.showSuccess = true;
                             $scope.$apply();
+                        } else {
+                            $scope.errorText = 'There was an error unbanning the user. Maby you arent an op';
+                            $scope.showError = true;
+                            $scope.$apply();
                         }
                     });
                 } else if (settopic.test($scope.usermessage)) {
@@ -143,10 +168,35 @@ app.controller('RoomCtrl', ['$scope', '$location', '$routeParams', 'SocketSrv', 
                         room: $scope.roomName,
                         topic: thevictim
                     }, function(success) {
-                        $scope.successText = 'You changed the topic successfully';
-                        $scope.showSuccess = true;
-                        $scope.$apply();
+                        if (success) {
+                            $scope.successText = 'You changed the topic successfully';
+                            $scope.showSuccess = true;
+                            $scope.$apply();
+                        } else {
+                            $scope.errorText = 'There was an error changing the topic. Maby you arent an op';
+                            $scope.showError = true;
+                            $scope.$apply();
+                        }
                     });
+                } else if (privatemsg.test($scope.usermessage)) {
+                    var nextIndex = thevictim.indexOf(' ') + 1;
+                    var nnn = thevictim.indexOf(' ');
+                    theNick = thevictim.substring(0, nnn)
+                    theMessages = thevictim.substring(nextIndex, thevictim.length);
+                    socket.emit('privatemsg', {
+                        message: theMessages,
+                        nick:theNick
+                    }, function(success) {
+                        if (success) {
+                            $scope.successText = 'You successfully sent the private message';
+                            $scope.showSuccess = true;
+                            $scope.$apply();
+                        } else {
+                            $scope.errorText = 'There was an error sending private message.';
+                            $scope.showError = true;
+                            $scope.$apply();
+                        }
+                    })
                 } else {
                     socket.emit('sendmsg', {
                         roomName: $scope.roomName,

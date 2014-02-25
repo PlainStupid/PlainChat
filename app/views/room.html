@@ -51,7 +51,7 @@ data-original-title="Commands">Help? - hover this</span>
 </div>
 
 
-<div class="alert alert-success" ng-show="showSuccess">
+<div class="alert alert-success alert-message" ng-show="showSuccess">
 <button type="button" class="close" data-ng-click="switchBool('showSuccess')">
 ×
 </button>
@@ -61,14 +61,14 @@ Done!
 {{successText}}
 </div>
 
-<div class="alert alert-alert" ng-show="showSuccess">
-<button type="button" class="close" data-ng-click="switchBool('showSuccess')">
+<div class="alert alert-danger alert-message" ng-show="showError">
+<button type="button" class="close" data-ng-click="switchBool('showError')">
 ×
 </button>
 <strong>
-Done!
+Error!
 </strong>
-{{successText}}
+{{errorText}}
 </div>
 
 <script>
