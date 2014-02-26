@@ -19,8 +19,6 @@ app.controller('RoomCtrl', ['$scope', '$location', '$routeParams', 'SocketSrv', 
         var unban = /^\/unban\s.+$/;
         var settopic = /^\/settopic\s.+$/;
         var privatemsg = /^\/privatemsg\s\S.+\s.+$/;
-        var unban = /^\/ban\s.+$/;
-        var settopic = /^\/settopic\s.+$/;
 
         if (socket) {
 
